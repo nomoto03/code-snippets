@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Additional styles if needed */
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <h1 class="text-xl font-bold text-gray-700">To-Do List</h1>
+            </div>
+            <div class="mb-6">
+                <label for="new-task" class="block text-gray-700 text-sm font-bold mb-2">New Task</label>
+                <div class="flex items-center">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="new-task" type="text" placeholder="Enter a new task">
+                    <button class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        Add
+                    </button>
+                </div>
+            </div>
+            <div id="task-list" class="space-y-4">
+                <!-- Task items will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for adding tasks to the list
+        document.querySelector('button').addEventListener('click', function() {
+            var taskInput = document.getElementById('new-task');
+            var taskList = document.getElementById('task-list');
+            var taskValue = taskInput.value.trim();
+
+            if (taskValue) {
+                var taskItem = document.createElement('div');
+                taskItem.className = 'flex items-center justify-between p-2 bg-gray-200 rounded';
+                taskItem.innerHTML = `
+                    <span class="text-gray-800">${taskValue}</span>
+                    <button class="text-red-500 hover:text-red-700" onclick="this.parentElement.remove()">
+                        &#10005;
+                    </button>
+                `;
+                taskList.appendChild(taskItem);
+                taskInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
